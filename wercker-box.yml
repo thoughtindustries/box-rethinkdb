@@ -11,6 +11,14 @@ keywords:
   - database
   - json
 packages:
+  - llvm@3.4.2
+  - clang@3.4.2
+  - gcc@4.8.1
+  - binutils@2.22
+  - make@3.81
+  - automake@1.14.1
+  - autoconf@2.69
+  - libtool@2.4.2
   - rethinkdb@1.14.0
 script: |
   source /etc/lsb-release && echo "deb http://download.rethinkdb.com/apt $DISTRIB_CODENAME main" | sudo tee /etc/apt/sources.list.d/rethinkdb.list
