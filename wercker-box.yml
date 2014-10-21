@@ -1,5 +1,5 @@
 name: rethinkdb
-version: 0.4.0
+version: 0.4.1
 inherits: wercker/ubuntu12.04-webessentials@1.0.4
 type: service
 platform: ubuntu@12.04
@@ -16,12 +16,13 @@ packages:
 script: |
   source /etc/lsb-release && echo "deb http://download.rethinkdb.com/apt $DISTRIB_CODENAME main" | sudo tee /etc/apt/sources.list.d/rethinkdb.list
   wget -O- http://download.rethinkdb.com/apt/pubkey.gpg | sudo apt-key add -
-  sudo apt-get purge -y --auto-remove make gcc g++
+  sudo apt-get purge -y --auto-remove gcc g++
+  sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   sudo apt-get update
+  sudo apt-get install build-essential
   sudo apt-get install gcc-4.8 g++-4.8 -y
   sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 99
   sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 99
-  sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.4 99
   gcc --version
   g++ --version
   sudo apt-get install rethinkdb -y
